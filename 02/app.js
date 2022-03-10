@@ -37,3 +37,34 @@ var me = {
         console.log('hello');
     },
 };
+
+var article1 = {
+    title: '제목1',
+    url: "http://naver.com",
+};
+
+var articles = [article1]
+console.log(articles)
+
+var todos = ['운동'];
+var todo = '게임';
+todos.push(todo)
+// console.log(todos)
+todos.forEach(function(todo){
+    console.log(todo);
+})
+
+var updateTodo = '게임';
+var updateIndex = todos.findIndex(function(todo) {
+    return todo === updateTodo
+});
+console.log(updateIndex)
+
+todos[updateIndex] = '공부';
+console.log(todos);
+
+var deleteTodo = '공부';
+var newTodos = todos.filter(function(todo) {
+    return todo !== deleteTodo
+});
+console.log(newTodos)
