@@ -90,3 +90,23 @@ delete2(todos, todo);
 //     return todo !== deleteTodo
 // });
 // console.log(newTodos)
+
+for(var i = 2; i <= 9; i++) {
+    document.write(i + '단');
+    document.write('<br>');
+    for(var j = 1; j <= 9; j++) {
+      document.write(i + ' * ' + j + ' = ' + (i*j));
+      document.write('<br>');
+    }
+  }
+
+function printMultiplicationTable(number) {
+    document.write(number + '단');
+    document.write('<br>');
+    for(var j = 1; j <= 9; j++) {
+      document.write(number + ' * ' + j + ' = ' + (number*j));
+      document.write('<br>');
+    }
+}
+
+printMultiplicationTable(3)
