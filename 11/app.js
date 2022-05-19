@@ -1,7 +1,11 @@
-const url = `https://dapi.kakao.com/v2/search/web?query=#query`;
+const url = `https://dapi.kakao.com/v2/search/web?query=#query&page=`;
 const $docs = document.querySelector('#docs');
-const $query = document.querySelector('#query');
+// const $query = document.querySelector('#query');
 const $searchButton = document.querySelector('#searchButton');
+const $searchForm = document.querySelector('#searchForm');
+const $query = document.querySelector('[name="query"]');
+const $moreBtn = document.querySelector('#more');
+let page = 1;
 
 function getFetch(url, callback) {
     const headers = {
@@ -15,7 +19,7 @@ function getFetch(url, callback) {
 
   function search() {
     const query = $query.value;
-    const searchUrl = url.replace('#query', query)
+    const searchUrl = url.replace('#query', query) + page.toString();
 
     getFetch(searchUrl, (data) => {
         const { documents } = data;
@@ -28,9 +32,21 @@ function getFetch(url, callback) {
         $docs.innerHTML = docs.join('<hr>');
     });
   }
+$searchForm.addEventListener('submit', (event) => {
+    console.log(11)
+    search()
+    event.preventDefault();
+})
 
-  $searchButton.addEventListener('click', search)
-  $query.addEventListener('keydown', (event) => {
-    if(event.key !== 'Enter') return;
-    search();
-  })
+$moreBtn.addEventListener('click', ()=>{
+  page++;
+  $docs.innerHTML += '<br><hr>';
+  search();
+});
+
+
+//   $searchButton.addEventListener('click', search)
+//   $query.addEventListener('keydown', (event) => {
+//     if(event.key !== 'Enter') return;
+//     search();
+//   })
